@@ -1,0 +1,64 @@
+Parameters:
+  Environment:
+    Type: String
+    Default: dev
+    AllowedValues:
+      - dev
+      - acc
+      - prev
+      - prod
+  Application:
+    Type: String
+    Default: pnc
+  Project:
+    Type: String
+    Default: atlas
+
+Resources:
+  Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${Project}-${Application}-s3bucket9999-${Environment}"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+      Tags:
+        - Key: Project
+          Value: !Ref Project
+        - Key: Application
+          Value: !Ref Application
+        - Key: Environment
+          Value: !Ref Environment
+  MyExampleRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: MyExampleRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: rds.amazonaws.com
+            Action: 'sts:AssumeRole'
+            Condition:
+              StringEquals:
+                sts:ExternalId: 'arn:aws:rds:us-east-1:917224052503:db:database-1'
+  S3GetObjectListPolicy:
+    Type: 'AWS::IAM::Policy'
+    Properties:
+      PolicyName: S3GetObjectListPolicy
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+              - 's3:GetObject'
+              - 's3:ListBucket'
+            Resource:
+              - 'arn:aws:s3:::velloth8998'
+              - 'arn:aws:s3:::velloth8998/*'
+      Roles:
+        - Ref: MyExampleRole
