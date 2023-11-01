@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      REGION: "us-west-1"  # Set your default region here
+      REGION: "us-east-1"  # Set your default region here
       Environment: "dev"  # Set your default environment here
       Application: "pnc"  # Set your default project name here
       Project: "atlas"
@@ -38,4 +38,4 @@ jobs:
 
       - name: Create/Update CloudFormation Stack
         run: |
-          aws cloudformation deploy --template-file /templates/AWS-Role.yaml --stack-name $Project-$Application-$Environment --parameter-overrides --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
+          aws cloudformation deploy --template-file templates/AWS-Role.yaml --stack-name $Project-$Application-$Environment --parameter-overrides --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
