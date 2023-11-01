@@ -75,7 +75,7 @@ Resources:
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5
       TableName: MyTable1
-  Bucket:
+  Bucketone:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: sanojvelloth8989
@@ -84,7 +84,7 @@ Resources:
         BlockPublicPolicy: true
         IgnorePublicAcls: true
         RestrictPublicBuckets: true
-  Bucket:
+  Buckettwo:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: sanojvelloth8989
