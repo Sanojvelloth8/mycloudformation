@@ -1,38 +1,28 @@
-name: 'Deploy to AWS CloudFormation'
+name: AWS CloudFormation Workflow
 
-on: 
+on:
   push:
-    branches: [ master ]
+    branches:
+      - main  # Change this to your main branch name
   pull_request:
-    branches: [ master ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+    branches:
+      - main  # Change this to your main branch name
 
 jobs:
-  # This workflow contains a single job called "deploy"
   deploy:
-    # The type of runner that the job will run on
+    name: Deploy CloudFormation Stack
     runs-on: ubuntu-latest
-    # Steps represent a sequence of tasks that will be executed as part of the job
+
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout code from master branch
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      # Configure AWS Credential
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.ACCESS_KEY_SECRET }}
-          aws-region: us-east-1
+      - name: AWS Configure
+        run: aws configure set aws_access_key_id ${{ secrets.VELLOTH_DEV_AWS_ACCESS_KEY_ID }} && aws configure set aws_secret_access_key ${{ secrets.VELLOTH_DEV_AWS_SECRET_ACCESS_KEY }} && aws configure set default.region ${{ secrets.VELLOTH_DEV_AWS_DEFAULT_REGION }}
 
-      # Deploy to AWS CloudFormation
-      - name: Deploy to AWS CloudFormation
-        uses: aws-actions/aws-cloudformation-github-deploy@v1
-        with:
-          name: test-stack
-          template: AWS-Role.yaml
-          no-fail-on-empty-changeset: "1"
-         
+      - name: Validate CloudFormation Template
+        run: aws cloudformation validate-template --template-body file://path/to/your/template.yaml
+
+      - name: Create/Update CloudFormation Stack
+        run: |
+          aws cloudformation deploy --template-file /mycloudformation/AWS-Role.yaml --stack-name mystack --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
