@@ -83,4 +83,13 @@ Resources:
         BlockPublicAcls: true
         BlockPublicPolicy: true
         IgnorePublicAcls: true
-        RestrictPublicBuckets: true    
+        RestrictPublicBuckets: true
+  Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: sanojvelloth8989
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
