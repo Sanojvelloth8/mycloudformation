@@ -62,7 +62,7 @@ Resources:
               - 'arn:aws:s3:::velloth8998/*'
       Roles:
         - Ref: MyExampleRole
-  MyDynamoDBTable:
+  MyDynamoDBTable1:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
@@ -74,8 +74,8 @@ Resources:
       ProvisionedThroughput:
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5
-      TableName: MyTable
-  MyDynamoDBTable:
+      TableName: MyTable1
+  MyDynamoDBTable2:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
