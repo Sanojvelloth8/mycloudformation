@@ -26,4 +26,4 @@ jobs:
 
       - name: Create/Update CloudFormation Stack
         run: |
-          aws cloudformation deploy --template-file //AWS-Role.yaml --stack-name mystack --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
+          aws cloudformation deploy --template-file /AWS-Role.yaml --stack-name mystack --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
