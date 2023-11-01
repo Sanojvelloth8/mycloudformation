@@ -38,4 +38,4 @@ jobs:
 
       - name: Create/Update CloudFormation Stack
         run: |
-          aws cloudformation deploy --template-file /home/runner/work/mycloudformation/mycloudformation/templates/AWS-Role.yaml --stack-name $Project-$Application-$Environment --parameter-overrides --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM --region $REGION
+          aws cloudformation deploy --template-file /templates/AWS-Role.yaml --stack-name $Project-$Application-$Environment --parameter-overrides --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM --region $REGION
