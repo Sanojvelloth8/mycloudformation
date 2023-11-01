@@ -32,16 +32,8 @@ jobs:
         run: |
           pwd
           ls -la
-          mkdir ./home/pncdevcftartifacts
-          pwd
-          ls -la
-          cd ./home/runner/work/mycloudformation/mycloudformation
           zip -rq templates.zip templates
-          ls -la
-          cd ./home/runner/work/mycloudformation/mycloudformation
-          ls -la
           unzip templates.zip
-          ls -la
 
       - name: Create/Update CloudFormation Stack
         run: |
