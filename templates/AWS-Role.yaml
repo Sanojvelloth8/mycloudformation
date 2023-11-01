@@ -18,7 +18,7 @@ Resources:
   Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub "${Project}-${Application}-s3bucket9999-${Environment}"
+      BucketName: !Sub "${Project}-${Application}-s3bucket8888-${Environment}"
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
         BlockPublicPolicy: true
