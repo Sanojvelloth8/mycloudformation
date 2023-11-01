@@ -22,8 +22,8 @@ jobs:
       - name: check pwd
         run: ls -la
       - name: Validate CloudFormation Template
-        run: aws cloudformation validate-template --template-body file://mycloudformation/AWS-Role.yaml
+        run: aws cloudformation validate-template --template-body file://AWS-Role.yaml
 
       - name: Create/Update CloudFormation Stack
         run: |
-          aws cloudformation deploy --template-file /mycloudformation/AWS-Role.yaml --stack-name mystack --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
+          aws cloudformation deploy --template-file /AWS-Role.yaml --stack-name mystack --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
