@@ -33,7 +33,6 @@ jobs:
           pwd
           ls -la
           zip -rq templates.zip templates
-          unzip templates.zip
           pwd
           ls -la
 
