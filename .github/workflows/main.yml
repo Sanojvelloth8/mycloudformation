@@ -30,6 +30,7 @@ jobs:
         run: ls -la
       - name: Create Artifact
         run: |
+          mkdir ./home/pncdevcftartifacts
           pwd
           ls -la
           cd ./home/runner/work/mycloudformation/mycloudformation
