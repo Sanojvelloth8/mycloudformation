@@ -30,6 +30,8 @@ jobs:
         run: ls -la
       - name: Create Artifact
         run: |
+          pwd
+          ls -la
           mkdir ./home/pncdevcftartifacts
           pwd
           ls -la
