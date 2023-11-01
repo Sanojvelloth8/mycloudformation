@@ -62,34 +62,5 @@ Resources:
               - 'arn:aws:s3:::velloth8998/*'
       Roles:
         - Ref: MyExampleRole
-  MyDynamoDBTable1:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      AttributeDefinitions:
-        - AttributeName: id
-          AttributeType: S
-      KeySchema:
-        - AttributeName: id
-          KeyType: HASH
-      ProvisionedThroughput:
-        ReadCapacityUnits: 5
-        WriteCapacityUnits: 5
-      TableName: MyTable1
-  Bucketone:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: sanojvelloth8989
-      PublicAccessBlockConfiguration:
-        BlockPublicAcls: true
-        BlockPublicPolicy: true
-        IgnorePublicAcls: true
-        RestrictPublicBuckets: true
-  Buckettwo:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: sanojvelloth8989
-      PublicAccessBlockConfiguration:
-        BlockPublicAcls: true
-        BlockPublicPolicy: true
-        IgnorePublicAcls: true
-        RestrictPublicBuckets: true
+  
+  
