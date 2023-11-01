@@ -62,3 +62,16 @@ Resources:
               - 'arn:aws:s3:::velloth8998/*'
       Roles:
         - Ref: MyExampleRole
+  MyDynamoDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+      TableName: MyTable
