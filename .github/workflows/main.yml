@@ -13,17 +13,31 @@ jobs:
     name: Deploy CloudFormation Stack
     runs-on: ubuntu-latest
 
+    env:
+      REGION: "us-west-1"  # Set your default region here
+      Environment: "dev"  # Set your default environment here
+      Application: "pnc"  # Set your default project name here
+      Project: "atlas"
+
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
       - name: AWS Configure
-        run: aws configure set aws_access_key_id ${{ secrets.VELLOTH_DEV_AWS_ACCESS_KEY_ID }} && aws configure set aws_secret_access_key ${{ secrets.VELLOTH_DEV_AWS_SECRET_ACCESS_KEY }} && aws configure set default.region ${{ secrets.VELLOTH_DEV_AWS_DEFAULT_REGION }}
+        run: aws configure set aws_access_key_id ${{ secrets.VELLOTH_DEV_AWS_ACCESS_KEY_ID }} && aws configure set aws_secret_access_key ${{ secrets.VELLOTH_DEV_AWS_SECRET_ACCESS_KEY }} && aws configure set default.region $REGION
       - name: check pwd
         run: ls -la
-      - name: Validate CloudFormation Template
-        run: aws cloudformation validate-template --template-body file://AWS-Role.yaml
+      - name: Create Artifact
+        run: |
+          cd ./mycloudformation
+          zip -rq templates.zip templates
+          ls -la
+          cd ./mycloudformation
+          ls -la
+          unzip templates.zip
+          ls -la
 
       - name: Create/Update CloudFormation Stack
         run: |
-          aws cloudformation deploy --template-file /AWS-Role.yaml --stack-name mystack --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
+          aws cloudformation deploy --template-file templates/AWS-Role.yaml --stack-name $Project-$Application-$Environment --parameter-overrides --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM --region $REGION
