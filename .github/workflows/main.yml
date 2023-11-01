@@ -19,7 +19,8 @@ jobs:
 
       - name: AWS Configure
         run: aws configure set aws_access_key_id ${{ secrets.VELLOTH_DEV_AWS_ACCESS_KEY_ID }} && aws configure set aws_secret_access_key ${{ secrets.VELLOTH_DEV_AWS_SECRET_ACCESS_KEY }} && aws configure set default.region ${{ secrets.VELLOTH_DEV_AWS_DEFAULT_REGION }}
-
+      - name: check pwd
+        run: ls -la
       - name: Validate CloudFormation Template
         run: aws cloudformation validate-template --template-body file://mycloudformation/AWS-Role.yaml
 
