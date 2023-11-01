@@ -30,6 +30,8 @@ jobs:
         run: ls -la
       - name: Create Artifact
         run: |
+          pwd
+          ls -la
           cd ./mycloudformation
           zip -rq templates.zip templates
           ls -la
