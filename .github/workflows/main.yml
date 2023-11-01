@@ -32,14 +32,14 @@ jobs:
         run: |
           pwd
           ls -la
-          cd ./mycloudformation
+          cd ./home/runner/work/mycloudformation/mycloudformation
           zip -rq templates.zip templates
           ls -la
-          cd ./mycloudformation
+          cd ./home/runner/work/mycloudformation/mycloudformation
           ls -la
           unzip templates.zip
           ls -la
 
       - name: Create/Update CloudFormation Stack
         run: |
-          aws cloudformation deploy --template-file templates/AWS-Role.yaml --stack-name $Project-$Application-$Environment --parameter-overrides --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM --region $REGION
+          aws cloudformation deploy --template-file /home/runner/work/mycloudformation/mycloudformation/templates/AWS-Role.yaml --stack-name $Project-$Application-$Environment --parameter-overrides --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM --region $REGION
